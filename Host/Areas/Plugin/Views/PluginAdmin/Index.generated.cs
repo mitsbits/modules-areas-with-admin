@@ -37,11 +37,10 @@ namespace Host.Areas.Plugin.Views.PluginAdmin
         }
         public override void Execute()
         {
-WriteLiteral("\r\n");
-
             
-            #line 2 "..\..\Areas\Plugin\Views\PluginAdmin\Index.cshtml"
+            #line 1 "..\..\Areas\Plugin\Views\PluginAdmin\Index.cshtml"
   
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 
             

@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Web.Compilation;
 using System.Web.Mvc;
 using Common;
+using WebGrease;
 
 namespace Host.Areas.Admin
 {
@@ -31,7 +32,7 @@ namespace Host.Areas.Admin
 
             var r = context.MapRoute(
                  "Admin_default",
-                 "Admin/{controller}/{action}/{id}",
+                 AreaName + "/{controller}/{action}/{id}",
                  new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                  new { controller = new NoAdminController() },
                  new[] { "Host.Areas.Admin.Controllers" }
@@ -40,7 +41,7 @@ namespace Host.Areas.Admin
             r.DataTokens["UseNamespaceFallback"] = false;
         }
 
-        private static void RegisterAdminRoutes(AreaRegistrationContext context)
+        private  void RegisterAdminRoutes(AreaRegistrationContext context)
         {
             var asmbls = ScopedAssemblies();
             foreach (var assembly in asmbls)
@@ -57,12 +58,13 @@ namespace Host.Areas.Admin
                         var controller = iAdmin.Name.Replace("Controller", string.Empty);
                         var nmspace = iAdmin.Namespace;
 
+                        var rootPrefix = string.Format("{0}-{1}", AreaName, prefix);
 
                         var r = context.MapRoute(
                             string.Format("{0}_{1}", prefix, controller),
-                            string.Format("Admin/{0}/{{controller}}/{{action}}/{{id}}", prefix),
-                            new { controller, action = "Index", id = UrlParameter.Optional },
-                            null,
+                            string.Format("{0}/{{controller}}/{{action}}/{{id}}", rootPrefix),
+                            new { controller, id = UrlParameter.Optional },
+                             new { controller = new YesAdminController() },
                             new[] { nmspace }
                             );
 

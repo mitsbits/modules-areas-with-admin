@@ -22,7 +22,10 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>   
+                    <li>@Html.ActionLink("Plugin", "Index", "Functional", new { area = "plugin" }, null)</li>  
+                    <li>@Html.ActionLink("Back Office", "Index", "home", new { area = "admin" }, null)</li>      
+                    <li>@Html.ActionLink("Back Office for plugin", "Index", "pluginadmin", new { area = "admin" }, null)</li>
                 </ul>
             </div>
         </div>

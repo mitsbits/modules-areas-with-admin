@@ -19,7 +19,7 @@ namespace Host.Areas.Pugin
                 "Plugin_default",
                 AreaName + "/{controller}/{action}/{id}",
                 new { controller="Functional", action = "Index", id = UrlParameter.Optional } ,
-                null,
+                new { controller = new NoAdminController() },
                 new[] { "Host.Areas.Plugin.Controllers" }
             );
            r.DataTokens["UseNamespaceFallback"] = false;
